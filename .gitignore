@@ -14,4 +14,7 @@ node_modules/
 # ignore all secrets but the folder keper
 secrets/*
 !secrets/.gitkeep
-cypress/
+cypress/*
+!cypress/support/
+#cypress/screenshots/*
+!cypress/screenshots/.gitkeep

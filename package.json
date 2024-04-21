@@ -9,9 +9,9 @@
   "dependencies": {
     "@aws-sdk/client-s3": "^3.556.0",
     "@aws-sdk/lib-storage": "^3.556.0",
-    "cypress": "^13.8.0",
     "dotenv": "^16.4.5",
     "dotenv-parse-variables": "^2.0.0",
+    "puppeteer": "^22.6.5",
     "telegraf": "^4.16.3"
   },
   "scripts": {
