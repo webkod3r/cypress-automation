@@ -1,0 +1,19 @@
+{
+  "name": "appointment-search",
+  "version": "1.0.0",
+  "description": "Searches the page and notifies me if there are appointments available",
+  "main": "index.js",
+  "author": "Pablo Molina",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "cypress": "^13.8.0",
+    "dotenv": "^16.4.5",
+    "dotenv-parse-variables": "^2.0.0",
+    "telegraf": "^4.16.3"
+  },
+  "scripts": {
+    "e2e:chrome": "cypress run --browser chrome",
+    "check-appt": "cypress run --browser chrome --headless --spec 'tests/appointmentCheck.cy.js'"
+  }
+}

@@ -1,0 +1,17 @@
+.DS_Store
+.idea/
+.vscode/
+*.code-workspace
+/vendor
+.env
+.env.test
+.phpstorm.meta.php
+.phpunit.result.cache
+/coverage/
+.cache/
+node_modules/
+
+# ignore all secrets but the folder keper
+secrets/*
+!secrets/.gitkeep
+cypress/
