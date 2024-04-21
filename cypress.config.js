@@ -24,7 +24,6 @@ module.exports = defineConfig({
       // Add environment variables to Cypress config
       // config.env.TELEGRAM_BOT_TOKEN = env.TELEGRAM_BOT_TOKEN;
       config.env = Object.assign(config.env, dotenvParseVariables(env))
-      console.log('environment', config.env)
 
       on("task", {
         log(message) {

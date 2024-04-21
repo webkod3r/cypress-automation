@@ -1,12 +1,15 @@
-const dotenv = require('dotenv').config();
+const dotenv = require('dotenv');
+const dotenvParseVariables = require('dotenv-parse-variables');
 const puppeteer = require('puppeteer');
 const { Telegraf } = require("telegraf");
 const { FmtString } = require("telegraf/format");
 
+const env = dotenv.config().parsed;
+const parsedEnv = Object.assign({}, dotenvParseVariables(env))
 
 const telegramNotification = async ({ chatID, message }) => {
   // @see https://telegraf.js.org/classes/Telegram.html#constructor
-  const app = new Telegraf(process.env.TELEGRAM_BOT_TOKEN);
+  const app = new Telegraf(parsedEnv.TELEGRAM_BOT_TOKEN);
   const formattedMessage = new FmtString(message);
   return await app.telegram.sendMessage(chatID, formattedMessage, {
     parse_mode: "MarkdownV2",
@@ -37,17 +40,18 @@ const telegramNotification = async ({ chatID, message }) => {
 
   const noTimesElement = await page.$("#no-times-available-message")
   if (noTimesElement) {
-    if (process.env.DEBUG) {
-      console.log("No appointment times");
+    console.log("No appointment times");
+    if (parsedEnv.DEBUG) {
       await telegramNotification({
-        chatID: process.env.TARGET_CHAT_ID,
+        chatID: parsedEnv.TARGET_CHAT_ID,
         message: "Testing",
       })
     }
   } else {
+    console.log('MIGHT BE TIMES AVAILABLE!!!');
     // element not present, so, let's book the appointment
     await telegramNotification({
-      chatID: process.env.TARGET_CHAT_ID,
+      chatID: parsedEnv.TARGET_CHAT_ID,
       message: "*Hurry Apurate*, hay nuevas citas disponibles.",
     })
   }
